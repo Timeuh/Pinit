@@ -1,5 +1,5 @@
 import chalk from "chalk";
-import {QuestionChoice} from "../types";
+import {QuestionChoice} from "../types/types";
 
 export const useTemplate: QuestionChoice = [
     {

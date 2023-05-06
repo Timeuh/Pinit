@@ -1,6 +1,6 @@
 import fs from "fs";
 import {templateDirectory} from "./Directory";
-import {QuestionChoice} from "../types";
+import {QuestionChoice} from "../types/types";
 
 const availableTemplates = fs.readdirSync(templateDirectory);
 export const templates: QuestionChoice = [
