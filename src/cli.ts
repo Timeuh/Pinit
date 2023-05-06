@@ -4,7 +4,7 @@ import {templates} from "./utils/ChooseTemplate";
 import {useTemplate} from "./utils/UseTemplate";
 
 export function cli() {
-    console.log(chalk.magenta('Générez votre projet !'));
+    console.log(chalk.magenta('Create your project !'));
 
     inquirer.prompt(useTemplate)
         .then(answers => {

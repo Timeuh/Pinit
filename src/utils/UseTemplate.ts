@@ -5,6 +5,6 @@ export const useTemplate: QuestionChoice = [
     {
         name: 'useTemplate',
         type: 'confirm',
-        message: chalk.cyan('Voulez-vous utiliser une template ? (Y/n)'),
+        message: chalk.cyan('Would you like to use a template ? (Y/n)'),
     }
 ];

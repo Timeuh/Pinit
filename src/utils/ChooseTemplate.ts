@@ -7,12 +7,12 @@ export const templates: QuestionChoice = [
     {
         name: 'template',
         type: 'list',
-        message: 'Quelle template voulez-vous utiliser ?',
+        message: 'Which template would you like to choose ?',
         choices: availableTemplates
     },
     {
         name: 'name',
         type: 'input',
-        message: 'Nommez votre projet : '
+        message: 'Choose name for your project : '
     }
 ];
