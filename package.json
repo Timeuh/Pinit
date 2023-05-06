@@ -1,0 +1,32 @@
+{
+  "name": "pinit",
+  "version": "1.0.0",
+  "description": "Project initializer",
+  "main": "dist/cli.js",
+  "type": "module",
+  "bin": {
+    "@timeuh/pinit": "bin/pinit.js",
+    "pinit": "bin/pinit.js"
+  },
+  "scripts": {
+    "build": "rollup -c rollup.config.js",
+    "dev": "rollup -c rollup.config.js --watch"
+  },
+  "keywords": [
+    "cli"
+  ],
+  "author": "Timeuh",
+  "license": "ISC",
+  "devDependencies": {
+    "@rollup/plugin-typescript": "11.1.0",
+    "@types/inquirer": "9.0.3",
+    "@types/node": "20.1.0",
+    "rollup": "3.21.5",
+    "tslib": "2.5.0",
+    "typescript": "5.0.4"
+  },
+  "dependencies": {
+    "chalk": "5.2.0",
+    "inquirer": "9.2.1"
+  }
+}
