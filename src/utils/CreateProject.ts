@@ -25,7 +25,7 @@ export const createProject = (answers: CreateProjectAnswers) => {
 
         // init npm
         const npmInit = spawn(npmPath, ['init', '-y'], {stdio: 'ignore'});
-        npmInit.on('error', (err) => {
+        npmInit.on('error', () => {
             console.log(chalk.red('Error while initializing npm !'));
         });
 
@@ -45,7 +45,7 @@ const initTypescript = (webTech: string, npmPath: string) => {
 
     // install typescript
     const tsInit = spawn(npmPath, ['install', 'typescript', '--save-dev'], {stdio: 'ignore'});
-    tsInit.on('error', (err) => {
+    tsInit.on('error', () => {
         console.log(chalk.red('Error while initializing Typescript !'));
     });
 }
@@ -58,7 +58,7 @@ const initEslint = (eslint: boolean, npmPath: string) => {
 
     // install eslint
     const eslintInstall = spawn(npmPath, ['install', 'eslint', '--save-dev'], {stdio: 'ignore'});
-    eslintInstall.on('error', (err) => {
+    eslintInstall.on('error', () => {
         console.log(chalk.red('Error while installing Eslint !'));
     });
 
@@ -66,7 +66,7 @@ const initEslint = (eslint: boolean, npmPath: string) => {
     eslintInstall.on('close', () => {
         // init eslint ith default values
         const eslintInit = spawn(npmPath, ['init', '@eslint/config'], {stdio: 'inherit'});
-        eslintInit.on('error', (err) => {
+        eslintInit.on('error', () => {
             console.log(chalk.red('Error while initializing Eslint !'));
         });
     });
