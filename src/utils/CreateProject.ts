@@ -33,7 +33,7 @@ export const createProject = (answers: CreateProjectAnswers) => {
         initTypescript(answers.webTech, npmPath);
 
         // init eslint if needed
-        initEslint(answers.eslint, npmPath, npxPath);
+        initEslint(answers.eslint, npmPath);
     });
 }
 
@@ -51,7 +51,7 @@ const initTypescript = (webTech: string, npmPath: string) => {
 }
 
 // init Eslint if the user chose it
-const initEslint = (eslint: boolean, npmPath: string, npxPath: string) => {
+const initEslint = (eslint: boolean, npmPath: string) => {
     if (!eslint){
         return;
     }
