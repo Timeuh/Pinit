@@ -13,6 +13,6 @@ export const templates: QuestionChoice = [
     {
         name: 'name',
         type: 'input',
-        message: 'Choose name for your project : '
+        message: 'Choose a name for your project : '
     }
 ];
