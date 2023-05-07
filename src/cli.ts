@@ -4,6 +4,7 @@ import {templates} from "./utils/ChooseTemplate";
 import {useTemplate} from "./utils/UseTemplate";
 import {techs} from "./utils/ChooseTechs";
 import {createProject} from "./utils/CreateProject";
+import {initVite, useVite} from "./utils/UseVite";
 
 // main function of the CLI
 export function cli() {
@@ -19,10 +20,18 @@ export function cli() {
                         console.log(answers);
                     });
             } else {
-                // if no, ask him which techs he wants to use
-                inquirer.prompt(techs)
+                inquirer.prompt(useVite)
                     .then(answers => {
-                        createProject(answers);
+                        if (answers.useVite) {
+                            // use vite
+                            initVite();
+                        } else {
+                            // if no, ask him which techs he wants to use
+                            inquirer.prompt(techs)
+                                .then(answers => {
+                                    createProject(answers);
+                                });
+                        }
                     });
             }
         });
