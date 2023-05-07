@@ -2,6 +2,7 @@ import fs from "fs";
 import {templateDirectory} from "./Directory";
 import {QuestionChoice} from "../types/types";
 
+// create array of questions for pinit when choosing a template
 const availableTemplates = fs.readdirSync(templateDirectory);
 export const templates: QuestionChoice = [
     {

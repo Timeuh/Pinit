@@ -1,6 +1,7 @@
 import {QuestionChoice} from "../types/types";
 import {webFramework, webTech} from "../stores/appConsts";
 
+// create array of questions for pinit when not choosing a template
 export const techs: QuestionChoice = [
     {
         name: 'webTech',
