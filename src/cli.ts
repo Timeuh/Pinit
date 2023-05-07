@@ -3,6 +3,7 @@ import chalk from "chalk";
 import {templates} from "./utils/ChooseTemplate";
 import {useTemplate} from "./utils/UseTemplate";
 import {techs} from "./utils/ChooseTechs";
+import {createProject} from "./utils/CreateProject";
 
 export function cli() {
     console.log(chalk.magenta('Create your project !'));
@@ -17,7 +18,7 @@ export function cli() {
             } else {
                 inquirer.prompt(techs)
                     .then(answers => {
-                        console.log(answers);
+                        createProject(answers);
                     });
             }
         });
