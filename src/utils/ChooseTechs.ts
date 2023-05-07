@@ -16,11 +16,6 @@ export const techs: QuestionChoice = [
         choices: webFramework
     },
     {
-        name: 'vite',
-        type: 'confirm',
-        message: 'Would you like to use Vite Js ? (Y/n)'
-    },
-    {
         name: 'tailwind',
         type: 'confirm',
         message: 'Would you like to use Tailwind CSS ? (Y/n)'
