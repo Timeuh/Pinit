@@ -18,9 +18,10 @@ export const createProject = (answers: CreateProjectAnswers) => {
         const directoryDir = path.resolve(process.cwd(), answers.name);
         process.chdir(directoryDir);
 
-        // get npm path
-        const appData = process.env.APPDATA ? process.env.APPDATA : '';
+        // get npm and npx paths
+        const appData = process.env.APPDATA || '';
         const npmPath = join(appData, 'npm', 'npm.cmd');
+        const npxPath = join(appData, 'npm', 'npx.cmd');
 
         // init npm
         const npmInit = spawn(npmPath, ['init', '-y'], {stdio: 'ignore'});
@@ -30,6 +31,9 @@ export const createProject = (answers: CreateProjectAnswers) => {
 
         // init typescript if needed
         initTypescript(answers.webTech, npmPath);
+
+        // init eslint if needed
+        initEslint(answers.eslint, npmPath, npxPath);
     });
 }
 
@@ -39,8 +43,31 @@ const initTypescript = (webTech: string, npmPath: string) => {
         return;
     }
 
+    // install typescript
     const tsInit = spawn(npmPath, ['install', 'typescript', '--save-dev'], {stdio: 'ignore'});
     tsInit.on('error', (err) => {
         console.log(chalk.red('Error while initializing Typescript !'));
+    });
+}
+
+// init Eslint if the user chose it
+const initEslint = (eslint: boolean, npmPath: string, npxPath: string) => {
+    if (!eslint){
+        return;
+    }
+
+    // install eslint
+    const eslintInstall = spawn(npmPath, ['install', 'eslint', '--save-dev'], {stdio: 'ignore'});
+    eslintInstall.on('error', (err) => {
+        console.log(chalk.red('Error while installing Eslint !'));
+    });
+
+    // when eslint is installed, init it
+    eslintInstall.on('close', () => {
+        // init eslint ith default values
+        const eslintInit = spawn(npmPath, ['init', '@eslint/config'], {stdio: 'inherit'});
+        eslintInit.on('error', (err) => {
+            console.log(chalk.red('Error while initializing Eslint !'));
+        });
     });
 }
