@@ -13,7 +13,6 @@ export type QuestionChoice = Array<Question>;
 export type CreateProjectAnswers = {
     webTech: string;
     webFramework: string;
-    vite: boolean;
     tailwind: boolean;
     eslint: boolean;
     name: string;

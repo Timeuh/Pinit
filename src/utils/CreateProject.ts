@@ -29,13 +29,8 @@ export const createProject = (answers: CreateProjectAnswers) => {
             console.log(chalk.red('Error while initializing npm !'));
         });
 
-        // init vite if needed
-        if (answers.vite){
-            initVite(answers.vite, npmPath);
-        } else {
-            // init typescript if needed
-            initTypescript(answers.webTech, npmPath);
-        }
+        // init typescript if needed
+        initTypescript(answers.webTech, npmPath);
 
         // init eslint if needed
         initEslint(answers.eslint, npmPath);
@@ -73,28 +68,6 @@ const initEslint = (eslint: boolean, npmPath: string) => {
         const eslintInit = spawn(npmPath, ['init', '@eslint/config'], {stdio: 'inherit'});
         eslintInit.on('error', () => {
             console.log(chalk.red('Error while initializing Eslint !'));
-        });
-    });
-}
-
-// init Vite js if the user chose it
-const initVite = (vite: boolean, npmPath: string) => {
-    if (!vite){
-        return;
-    }
-
-    // install vite
-    const viteInstall = spawn(npmPath, ['install', 'vite', '--save-dev'], {stdio: 'ignore'});
-    viteInstall.on('error', () => {
-        console.log(chalk.red('Error while installing Vite !'));
-    });
-
-    // when vite is installed, init it
-    viteInstall.on('close', () => {
-        // init vite
-        const viteInit = spawn(npmPath, ['init', 'vite'], {stdio: 'inherit'});
-        viteInit.on('error', () => {
-            console.log(chalk.red('Error while initializing Vite !'));
         });
     });
 }
