@@ -4,13 +4,13 @@ import {webFramework, webTech} from "../stores/appConsts";
 export const techs: QuestionChoice = [
     {
         name: 'webTech',
-        type: 'choice',
+        type: 'list',
         message: 'Which tech would you like to use ?',
         choices: webTech
     },
     {
         name: 'webFramework',
-        type: 'choice',
+        type: 'list',
         message: 'Which framework would you like to choose ?',
         choices: webFramework
     },
