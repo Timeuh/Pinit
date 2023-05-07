@@ -22,5 +22,18 @@ export const createProject = (answers: CreateProjectAnswers) => {
         npmInit.on('error', (err) => {
             console.log(chalk.red('Error while initializing npm !'));
         });
+
+        initTypescript(answers.webTech, npmPath);
+    });
+}
+
+const initTypescript = (webTech: string, npmPath: string) => {
+    if (webTech === 'Javascript'){
+        return;
+    }
+
+    const tsInit = spawn(npmPath, ['install', 'typescript', '--save-dev'], {stdio: 'ignore'});
+    tsInit.on('error', (err) => {
+        console.log(chalk.red('Error while initializing Typescript !'));
     });
 }
