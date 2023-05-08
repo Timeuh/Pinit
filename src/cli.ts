@@ -1,10 +1,8 @@
 import inquirer from "inquirer";
 import chalk from "chalk";
-import {templates} from "./utils/ChooseTemplate";
-import {useTemplate} from "./utils/UseTemplate";
-import {techs} from "./utils/ChooseTechs";
 import {createProject} from "./utils/CreateProject";
-import {initVite, useVite} from "./utils/UseVite";
+import {initVite} from "./utils/UseVite";
+import {techs, templates, useTemplate, useVite} from "./stores/appConsts";
 
 // main function of the CLI
 export function cli() {

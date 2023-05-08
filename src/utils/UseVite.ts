@@ -1,16 +1,6 @@
-import {QuestionChoice} from "../types/types";
 import chalk from "chalk";
 import {spawn} from "child_process";
 import {join} from "path";
-
-// create a question to ask the user if he wants to use vite js
-export const useVite: QuestionChoice = [
-    {
-        name: 'useVite',
-        type: 'confirm',
-        message: chalk.cyan('Would you like to use Vite Js ? (Y/n)'),
-    }
-];
 
 // init Vite js if the user chose it
 export const initVite = () => {
