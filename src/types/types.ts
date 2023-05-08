@@ -11,8 +11,6 @@ export type QuestionChoice = Array<Question>;
 
 // define the answers of the user, after inquirer.prompt()
 export type CreateProjectAnswers = {
-    webTech: string;
-    webFramework: string;
     tailwind: boolean;
     eslint: boolean;
     name: string;
