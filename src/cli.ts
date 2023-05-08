@@ -2,7 +2,7 @@ import inquirer from "inquirer";
 import chalk from "chalk";
 import {createProject} from "./utils/CreateProject";
 import {initVite} from "./utils/UseVite";
-import {techs, templates, useTemplate, useVite} from "./stores/appConsts";
+import {techs, templates, useTemplate, useVite, viteParams} from "./stores/appConsts";
 
 // main function of the CLI
 export function cli() {
@@ -21,8 +21,16 @@ export function cli() {
                 inquirer.prompt(useVite)
                     .then(answers => {
                         if (answers.useVite) {
-                            // use vite
-                            initVite();
+                            inquirer.prompt(viteParams)
+                                .then(answers => {
+                                    if (answers.useEslint){
+                                        // use vite with eslint
+                                        initVite(true, answers.name);
+                                    } else {
+                                        // use vite without eslint
+                                        initVite(false, answers.name);
+                                    }
+                                });
                         } else {
                             // if no, ask him which techs he wants to use
                             inquirer.prompt(techs)
