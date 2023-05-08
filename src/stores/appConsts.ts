@@ -83,3 +83,17 @@ export const useVite: QuestionChoice = [
         message: chalk.cyan('Would you like to use Vite Js ? (Y/n)'),
     }
 ];
+
+// create questions for vite js
+export const viteParams: QuestionChoice = [
+    {
+        name: 'useEslint',
+        type: 'confirm',
+        message: chalk.cyan('Would you like to use Eslint ? (Y/n)'),
+    },
+    {
+        name: 'name',
+        type: 'input',
+        message: 'Choose a name for your project : ',
+    }
+];
