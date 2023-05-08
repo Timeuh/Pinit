@@ -4,6 +4,7 @@ import chalk from "chalk";
 import path from "path";
 import {spawn} from "child_process";
 import {npmPath, npxPath} from "../stores/appConsts";
+import {initEslint} from "./useEslint";
 
 // create a project folder and init all the dependencies
 export const createProject = (answers: CreateProjectAnswers) => {
@@ -30,7 +31,9 @@ export const createProject = (answers: CreateProjectAnswers) => {
             initTypescript(answers.webTech, npmPath);
 
             // init eslint if needed
-            initEslint(answers.eslint, npmPath);
+            if (answers.eslint){
+                initEslint(npmPath);
+            }
         });
     } else {
         initFramework(answers.name, npxPath);
@@ -47,28 +50,6 @@ const initTypescript = (webTech: string, npmPath: string) => {
     const tsInit = spawn(npmPath, ['install', 'typescript', '--save-dev'], {stdio: 'ignore'});
     tsInit.on('error', () => {
         console.log(chalk.red('Error while initializing Typescript !'));
-    });
-}
-
-// init Eslint if the user chose it
-const initEslint = (eslint: boolean, npmPath: string) => {
-    if (!eslint){
-        return;
-    }
-
-    // install eslint
-    const eslintInstall = spawn(npmPath, ['install', 'eslint', '--save-dev'], {stdio: 'ignore'});
-    eslintInstall.on('error', () => {
-        console.log(chalk.red('Error while installing Eslint !'));
-    });
-
-    // when eslint is installed, init it
-    eslintInstall.on('close', () => {
-        // init eslint with default values
-        const eslintInit = spawn(npmPath, ['init', '@eslint/config'], {stdio: 'inherit'});
-        eslintInit.on('error', () => {
-            console.log(chalk.red('Error while initializing Eslint !'));
-        });
     });
 }
 
