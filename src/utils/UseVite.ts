@@ -2,7 +2,7 @@ import chalk from "chalk";
 import {spawn} from "child_process";
 import {npmPath} from "../stores/appConsts";
 import path from "path";
-import {initEslint} from "./useEslint";
+import {initEslint} from "./UseEslint";
 
 // init Vite js if the user chose it
 export const initVite = (useEslint: boolean, projectName: string) => {
