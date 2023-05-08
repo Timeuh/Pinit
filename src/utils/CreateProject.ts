@@ -7,34 +7,39 @@ import {spawn} from "child_process";
 
 // create a project folder and init all the dependencies
 export const createProject = (answers: CreateProjectAnswers) => {
-    // create new directory
-    fs.mkdir(answers.name, (err) => {
-        if (err) {
-            console.log(chalk.red('Error while creating project folder !'));
-            return;
-        }
+    // get npm and npx paths
+    const appData = process.env.APPDATA || '';
+    const npmPath = join(appData, 'npm', 'npm.cmd');
+    const npxPath = join(appData, 'npm', 'npx.cmd');
 
-        // change directory to the new one
-        const directoryDir = path.resolve(process.cwd(), answers.name);
-        process.chdir(directoryDir);
+    // if the user chose to not use a web framework
+    if (answers.webFramework === 'None') {
+        // create new directory
+        fs.mkdir(answers.name, (err) => {
+            if (err) {
+                console.log(chalk.red('Error while creating project folder !'));
+                return;
+            }
 
-        // get npm and npx paths
-        const appData = process.env.APPDATA || '';
-        const npmPath = join(appData, 'npm', 'npm.cmd');
-        const npxPath = join(appData, 'npm', 'npx.cmd');
+            // change directory to the new one
+            const directoryDir = path.resolve(process.cwd(), answers.name);
+            process.chdir(directoryDir);
 
-        // init npm
-        const npmInit = spawn(npmPath, ['init', '-y'], {stdio: 'ignore'});
-        npmInit.on('error', () => {
-            console.log(chalk.red('Error while initializing npm !'));
+            // init npm
+            const npmInit = spawn(npmPath, ['init', '-y'], {stdio: 'ignore'});
+            npmInit.on('error', () => {
+                console.log(chalk.red('Error while initializing npm !'));
+            });
+
+            // init typescript if needed
+            initTypescript(answers.webTech, npmPath);
+
+            // init eslint if needed
+            initEslint(answers.eslint, npmPath);
         });
-
-        // init typescript if needed
-        initTypescript(answers.webTech, npmPath);
-
-        // init eslint if needed
-        initEslint(answers.eslint, npmPath);
-    });
+    } else {
+        initFramework(answers.name, npxPath);
+    }
 }
 
 // init Typescript if the user chose it
@@ -69,5 +74,14 @@ const initEslint = (eslint: boolean, npmPath: string) => {
         eslintInit.on('error', () => {
             console.log(chalk.red('Error while initializing Eslint !'));
         });
+    });
+}
+
+// init the chosen web framework
+const initFramework = (projectName: string, npxPath: string) => {
+    // init react project
+    const reactInit = spawn(npxPath, ['create-react-app', projectName], {stdio: 'ignore'});
+    reactInit.on('error', () => {
+        console.log(chalk.red('Error while initializing React !'));
     });
 }
