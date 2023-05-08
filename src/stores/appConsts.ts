@@ -44,43 +44,32 @@ export const useTemplate: QuestionChoice = [
     }
 ];
 
-// create array of questions for pinit when not choosing a template
-export const techs: QuestionChoice = [
-    {
-        name: 'webTech',
-        type: 'list',
-        message: 'Which tech would you like to use ?',
-        choices: webTech
-    },
-    {
-        name: 'webFramework',
-        type: 'list',
-        message: 'Which framework would you like to choose ?',
-        choices: webFramework
-    },
-    {
-        name: 'tailwind',
-        type: 'confirm',
-        message: 'Would you like to use Tailwind CSS ? (Y/n)'
-    },
-    {
-        name: 'eslint',
-        type: 'confirm',
-        message: 'Would you like to use Eslint ? (Y/n)'
-    },
-    {
-        name: 'name',
-        type: 'input',
-        message: 'Choose a name for your project : '
-    }
-];
-
 // create a question to ask the user if he wants to use vite js
 export const useVite: QuestionChoice = [
     {
         name: 'useVite',
         type: 'confirm',
         message: chalk.cyan('Would you like to use Vite Js ? (Y/n)'),
+    }
+];
+
+// create a question to ask the user if he wants to use a framework
+export const useFramework: QuestionChoice = [
+    {
+        name: 'framework',
+        type: 'list',
+        message: 'Which framework would you like to choose ?',
+        choices: webFramework
+    }
+];
+
+// create a question to ask the user if he wants to use a framework
+export const useWebTech: QuestionChoice = [
+    {
+        name: 'webTech',
+        type: 'list',
+        message: 'Which tech would you like to use ?',
+        choices: webTech
     }
 ];
 
@@ -95,5 +84,24 @@ export const viteParams: QuestionChoice = [
         name: 'name',
         type: 'input',
         message: 'Choose a name for your project : ',
+    }
+];
+
+// create array of questions for pinit when not choosing a template
+export const projectParams: QuestionChoice = [
+    {
+        name: 'tailwind',
+        type: 'confirm',
+        message: 'Would you like to use Tailwind CSS ? (Y/n)'
+    },
+    {
+        name: 'eslint',
+        type: 'confirm',
+        message: 'Would you like to use Eslint ? (Y/n)'
+    },
+    {
+        name: 'name',
+        type: 'input',
+        message: 'Choose a name for your project : '
     }
 ];
