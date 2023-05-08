@@ -2,16 +2,11 @@ import {CreateProjectAnswers} from "../types/types";
 import fs from "fs";
 import chalk from "chalk";
 import path from "path";
-import {join} from "path";
 import {spawn} from "child_process";
+import {npmPath, npxPath} from "../stores/appConsts";
 
 // create a project folder and init all the dependencies
 export const createProject = (answers: CreateProjectAnswers) => {
-    // get npm and npx paths
-    const appData = process.env.APPDATA || '';
-    const npmPath = join(appData, 'npm', 'npm.cmd');
-    const npxPath = join(appData, 'npm', 'npx.cmd');
-
     // if the user chose to not use a web framework
     if (answers.webFramework === 'None') {
         // create new directory

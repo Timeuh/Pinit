@@ -1,12 +1,17 @@
 import chalk from "chalk";
 import {QuestionChoice} from "../types/types";
 import fs from "fs";
-import path from "path";
+import path, {join} from "path";
 import {fileURLToPath} from "url";
 
 // get the templates directory
 const currentFileUrl = import.meta.url;
 const templateDirectory = path.resolve(decodeURI(fileURLToPath(currentFileUrl)), '../../src/templates');
+
+// get npm and npx paths
+const appData = process.env.APPDATA || '';
+export const npmPath = join(appData, 'npm', 'npm.cmd');
+export const npxPath = join(appData, 'npm', 'npx.cmd');
 
 //choices for web tech of project, between Javascript and Typescript
 export const webTech = ['Javascript', 'Typescript'];

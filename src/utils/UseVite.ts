@@ -1,13 +1,9 @@
 import chalk from "chalk";
 import {spawn} from "child_process";
-import {join} from "path";
+import {npmPath} from "../stores/appConsts";
 
 // init Vite js if the user chose it
 export const initVite = () => {
-    // get npm path
-    const appData = process.env.APPDATA || '';
-    const npmPath = join(appData, 'npm', 'npm.cmd');
-
     // install vite
     const viteInstall = spawn(npmPath, ['install', 'vite', '--save-dev'], {stdio: 'ignore'});
     viteInstall.on('error', () => {
