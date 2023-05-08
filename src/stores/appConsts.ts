@@ -56,7 +56,7 @@ export const useVite: QuestionChoice = [
 // create a question to ask the user if he wants to use a framework
 export const useFramework: QuestionChoice = [
     {
-        name: 'framework',
+        name: 'chosenFramework',
         type: 'list',
         message: 'Which framework would you like to choose ?',
         choices: webFramework
