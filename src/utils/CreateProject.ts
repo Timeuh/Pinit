@@ -6,6 +6,7 @@ import {spawn} from "child_process";
 import {npmPath} from "../stores/appConsts";
 import {initEslint} from "./UseEslint";
 import {initReact} from "./UseReact";
+import {initTypescript} from "./UseTypescript";
 
 // create a project folder and init all the dependencies
 export const createProject = (framework: string, webTech: string, answers: CreateProjectAnswers) => {
@@ -41,17 +42,4 @@ export const createProject = (framework: string, webTech: string, answers: Creat
     if (framework === 'React') {
         initReact(answers.name);
     }
-}
-
-// init Typescript if the user chose it
-const initTypescript = (webTech: string, npmPath: string) => {
-    if (webTech === 'Javascript'){
-        return;
-    }
-
-    // install typescript
-    const tsInit = spawn(npmPath, ['install', 'typescript', '--save-dev'], {stdio: 'ignore'});
-    tsInit.on('error', () => {
-        console.log(chalk.red('Error while initializing Typescript !'));
-    });
 }
