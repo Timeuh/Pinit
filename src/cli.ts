@@ -45,7 +45,7 @@ export function cli() {
                                                 inquirer.prompt(projectParams)
                                                     .then(projectParams => {
                                                         // create project with all the params
-                                                        createProject(framework.chosenFramework, tech, projectParams);
+                                                        createProject(framework.chosenFramework, tech.webTech, projectParams);
                                                     });
                                             });
                                     } else {
