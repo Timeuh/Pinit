@@ -70,6 +70,7 @@ export const createProject = (chosenFramework: string, webTech: string, answers:
             });
         });
     } else if (chosenFramework === 'React') {
-        initReact(answers.name);
+        // if the user chose to use React
+        initReact(answers.name, answers.eslint);
     }
 }
