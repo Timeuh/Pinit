@@ -9,9 +9,9 @@ import {initReact} from "./UseReact";
 import {initTypescript} from "./UseTypescript";
 
 // create a project folder and init all the dependencies
-export const createProject = (framework: string, webTech: string, answers: CreateProjectAnswers) => {
+export const createProject = (chosenFramework: string, webTech: string, answers: CreateProjectAnswers) => {
     // if the user chose to not use a web framework
-    if (framework === 'None') {
+    if (chosenFramework === 'None') {
         // create new directory
         fs.mkdir(answers.name, (err) => {
             if (err) {
@@ -38,10 +38,38 @@ export const createProject = (framework: string, webTech: string, answers: Creat
             if (answers.eslint){
                 initEslint(npmPath);
             }
-        });
-    }
 
-    if (framework === 'React') {
+            // create src folder
+            fs.mkdir('src', (err) => {
+                if (err) {
+                    console.log(chalk.red('Error while creating src folder !'));
+                    return;
+                }
+
+                // change directory to src
+                const srcDir = path.resolve(process.cwd(), 'src');
+                process.chdir(srcDir);
+
+                // if we use typescript, init index.ts
+                if (webTech === 'Typescript'){
+                    fs.writeFile('index.ts', '', (err) => {
+                        if (err) {
+                            console.log(chalk.red('Error while creating index.ts file !'));
+                            return;
+                        }
+                    });
+                } else {
+                    // init index.js
+                    fs.writeFile('index.js', '', (err) => {
+                        if (err) {
+                            console.log(chalk.red('Error while creating index.js file !'));
+                            return;
+                        }
+                    });
+                }
+            });
+        });
+    } else if (chosenFramework === 'React') {
         initReact(answers.name);
     }
 }
