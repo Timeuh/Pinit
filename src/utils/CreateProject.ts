@@ -30,7 +30,9 @@ export const createProject = (framework: string, webTech: string, answers: Creat
             });
 
             // init typescript if needed
-            initTypescript(webTech, npmPath);
+            if (webTech === 'Typescript'){
+                initTypescript();
+            }
 
             // init eslint if needed
             if (answers.eslint){
