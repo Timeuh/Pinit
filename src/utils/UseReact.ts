@@ -4,8 +4,9 @@ import {spawn} from "child_process";
 import {npmPath, npxPath} from "../stores/appConsts";
 import {initEslint} from "./UseEslint";
 import path from "path";
+import {initTailwind} from "./UseTailwind";
 
-export const initReact = (projectName: string, useEslint: boolean, useTypescript: boolean) => {
+export const initReact = (projectName: string, useEslint: boolean, useTypescript: boolean, useTailwind: boolean) => {
     const commandArgs = ['create-react-app', projectName];
 
     if (useTypescript){
@@ -19,14 +20,20 @@ export const initReact = (projectName: string, useEslint: boolean, useTypescript
     });
 
     reactInit.on('close', () => {
+        // change directory to the new one
+        const directoryDir = path.resolve(process.cwd(), projectName);
+        process.chdir(directoryDir);
+
         // init eslint if needed
         if (useEslint){
-            // change directory to the new one
-            const directoryDir = path.resolve(process.cwd(), projectName);
-            process.chdir(directoryDir);
-
             // init eslint
             initEslint(npmPath);
+        }
+
+        // init tailwind if needed
+        if (useTailwind){
+            // init tailwind
+            initTailwind('react');
         }
     });
 }
