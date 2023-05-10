@@ -71,6 +71,6 @@ export const createProject = (chosenFramework: string, webTech: string, answers:
         });
     } else if (chosenFramework === 'React') {
         // if the user chose to use React
-        initReact(answers.name, answers.eslint, webTech === 'Typescript');
+        initReact(answers.name, answers.eslint, webTech === 'Typescript', answers.tailwind);
     }
 }
