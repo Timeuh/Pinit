@@ -6,7 +6,7 @@ import {projectParams, templates, useFramework, useTemplate, useVite, useWebTech
 
 // main function of the CLI
 export function cli() {
-    console.log(chalk.magenta('Create your project !'));
+    console.log(chalk.green('Create your project !'));
 
     // ask the user if he wants to use a template
     inquirer.prompt(useTemplate)
