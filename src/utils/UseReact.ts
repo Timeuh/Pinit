@@ -5,9 +5,15 @@ import {npmPath, npxPath} from "../stores/appConsts";
 import {initEslint} from "./UseEslint";
 import path from "path";
 
-export const initReact = (projectName: string, useEslint: boolean) => {
+export const initReact = (projectName: string, useEslint: boolean, useTypescript: boolean) => {
+    const commandArgs = ['create-react-app', projectName];
+
+    if (useTypescript){
+        commandArgs.push('--template', 'typescript');
+    }
+
     // init react project
-    const reactInit = spawn(npxPath, ['create-react-app', projectName], {stdio: 'ignore'});
+    const reactInit = spawn(npxPath, commandArgs, {stdio: 'ignore'});
     reactInit.on('error', () => {
         console.log(chalk.red('Error while initializing React !'));
     });
