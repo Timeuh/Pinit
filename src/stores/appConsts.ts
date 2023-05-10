@@ -81,6 +81,11 @@ export const viteParams: QuestionChoice = [
         message: chalk.cyan('Would you like to use Eslint ? (Y/n)'),
     },
     {
+        name: 'tailwind',
+        type: 'confirm',
+        message: 'Would you like to use Tailwind CSS ? (Y/n)',
+    },
+    {
         name: 'name',
         type: 'input',
         message: 'Choose a name for your project : ',
