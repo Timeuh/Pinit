@@ -25,13 +25,13 @@ export const templates: QuestionChoice = [
     {
         name: 'template',
         type: 'list',
-        message: 'Which template would you like to choose ?',
+        message: chalk.cyan('Which template would you like to choose ?'),
         choices: availableTemplates
     },
     {
         name: 'name',
         type: 'input',
-        message: 'Choose a name for your project : '
+        message: chalk.cyan('Choose a name for your project : ')
     }
 ];
 
@@ -40,7 +40,7 @@ export const useTemplate: QuestionChoice = [
     {
         name: 'useTemplate',
         type: 'confirm',
-        message: chalk.cyan('Would you like to use a template ? (Y/n)'),
+        message: chalk.cyan('Would you like to use a template ? (Y/n)')
     }
 ];
 
@@ -49,7 +49,7 @@ export const useVite: QuestionChoice = [
     {
         name: 'useVite',
         type: 'confirm',
-        message: chalk.cyan('Would you like to use Vite Js ? (Y/n)'),
+        message: chalk.magenta('Would you like to use Vite Js ? (Y/n)')
     }
 ];
 
@@ -58,7 +58,7 @@ export const useFramework: QuestionChoice = [
     {
         name: 'chosenFramework',
         type: 'list',
-        message: 'Which framework would you like to choose ?',
+        message: chalk.yellow('Which framework would you like to choose ?'),
         choices: webFramework
     }
 ];
@@ -68,7 +68,7 @@ export const useWebTech: QuestionChoice = [
     {
         name: 'webTech',
         type: 'list',
-        message: 'Which tech would you like to use ?',
+        message: chalk.yellow('Which tech would you like to use ?'),
         choices: webTech
     }
 ];
@@ -78,17 +78,17 @@ export const viteParams: QuestionChoice = [
     {
         name: 'useEslint',
         type: 'confirm',
-        message: chalk.cyan('Would you like to use Eslint ? (Y/n)'),
+        message: chalk.magenta('Would you like to use Eslint ? (Y/n)')
     },
     {
         name: 'tailwind',
         type: 'confirm',
-        message: 'Would you like to use Tailwind CSS ? (Y/n)',
+        message: chalk.magenta('Would you like to use Tailwind CSS ? (Y/n)')
     },
     {
         name: 'name',
         type: 'input',
-        message: 'Choose a name for your project : ',
+        message: chalk.magenta('Choose a name for your project : ')
     }
 ];
 
@@ -97,16 +97,16 @@ export const projectParams: QuestionChoice = [
     {
         name: 'tailwind',
         type: 'confirm',
-        message: 'Would you like to use Tailwind CSS ? (Y/n)'
+        message: chalk.yellow('Would you like to use Tailwind CSS ? (Y/n)')
     },
     {
         name: 'eslint',
         type: 'confirm',
-        message: 'Would you like to use Eslint ? (Y/n)'
+        message: chalk.yellow('Would you like to use Eslint ? (Y/n)')
     },
     {
         name: 'name',
         type: 'input',
-        message: 'Choose a name for your project : '
+        message: chalk.yellow('Choose a name for your project : ')
     }
 ];
