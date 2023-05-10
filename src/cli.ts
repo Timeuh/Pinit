@@ -27,10 +27,10 @@ export function cli() {
                                 .then(viteParams => {
                                     if (viteParams.useEslint){
                                         // use vite with eslint
-                                        initVite(true, viteParams.name);
+                                        initVite(true, viteParams.name, viteParams.tailwind);
                                     } else {
                                         // use vite without eslint
-                                        initVite(false, viteParams.name);
+                                        initVite(false, viteParams.name, viteParams.tailwind);
                                     }
                                 });
                         } else {
