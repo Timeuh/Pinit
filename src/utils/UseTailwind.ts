@@ -6,9 +6,19 @@ import {indexCssTailwind, tailwindConfig} from "../stores/TailwindContent";
 import path from "path";
 
 // init tailwind with vite js
-export const initTailwindVite = () => {
+export const initTailwind = (projectType: string) => {
+    // init params for tailwind installation and initialization
+    const installParams = ['install', '-D', 'tailwindcss'];
+    const initParams = ['tailwindcss', 'init'];
+
+    // if the project type is vite js
+    if (projectType === 'vite'){
+        installParams.push('postcss', 'autoprefixer');
+        initParams.push('-p');
+    }
+
     // install tailwind
-    const installTailwind = spawn(npmPath, ['install', '-D', 'tailwindcss', 'postcss', 'autoprefixer'], {stdio: 'ignore'});
+    const installTailwind = spawn(npmPath, installParams, {stdio: 'ignore'});
     installTailwind.on('error', () => {
         console.log(chalk.red('Error while installing Tailwind CSS !'));
     });
@@ -16,7 +26,7 @@ export const initTailwindVite = () => {
     // when tailwind is installed
     installTailwind.on('close', () => {
         // initialize tailwind
-        const initTailwind = spawn(npxPath, ['tailwindcss', 'init', '-p'], {stdio: 'inherit'});
+        const initTailwind = spawn(npxPath, initParams, {stdio: 'inherit'});
         initTailwind.on('error', () => {
             console.log(chalk.red('Error while initializing Tailwind CSS !'));
         });
