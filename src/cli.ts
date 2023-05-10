@@ -49,11 +49,15 @@ export function cli() {
                                                     });
                                             });
                                     } else {
-                                        // ask for project params
-                                        inquirer.prompt(projectParams)
-                                            .then(projectParams => {
-                                                // create project with chosen framework and all the params
-                                                createProject(framework.chosenFramework, 'Javascript', projectParams);
+                                        inquirer.prompt(useWebTech)
+                                            // ask the user if he wants to use javascript or typescript
+                                            .then(tech => {
+                                                // ask for project params
+                                                inquirer.prompt(projectParams)
+                                                    .then(projectParams => {
+                                                        // create project with chosen framework and all the params
+                                                        createProject(framework.chosenFramework, tech.webTech, projectParams);
+                                                    });
                                             });
                                     }
                                 });
