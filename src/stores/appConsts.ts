@@ -6,7 +6,7 @@ import {fileURLToPath} from "url";
 
 // get the templates directory
 const currentFileUrl = import.meta.url;
-const templateDirectory = path.resolve(decodeURI(fileURLToPath(currentFileUrl)), '../../src/templates');
+export const templateDirectory = path.resolve(decodeURI(fileURLToPath(currentFileUrl)), '../../src/templates');
 
 // get npm and npx paths
 const appData = process.env.APPDATA || '';
