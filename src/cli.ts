@@ -3,6 +3,7 @@ import chalk from "chalk";
 import {createProject} from "./utils/CreateProject";
 import {initVite} from "./utils/UseVite";
 import {projectParams, templates, useFramework, useTemplate, useVite, useWebTech, viteParams} from "./stores/appConsts";
+import {copyTemplate} from "./utils/CopyTemplate";
 
 // main function of the CLI
 export function cli() {
@@ -15,7 +16,8 @@ export function cli() {
                 // if yes, ask him which one
                 inquirer.prompt(templates)
                     .then(answers => {
-                        console.log(answers);
+                        // copy the template
+                        copyTemplate(answers.template, answers.name);
                     });
             } else {
                 // if no, ask if he wants to use vite js
