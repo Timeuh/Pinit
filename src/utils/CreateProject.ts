@@ -7,6 +7,7 @@ import {npmPath} from "../stores/appConsts";
 import {initEslint} from "./UseEslint";
 import {initReact} from "./UseReact";
 import {initTypescript} from "./UseTypescript";
+import {initTailwind} from "./UseTailwind";
 
 // create a project folder and init all the dependencies
 export const createProject = (chosenFramework: string, webTech: string, answers: CreateProjectAnswers) => {
@@ -66,6 +67,11 @@ export const createProject = (chosenFramework: string, webTech: string, answers:
                             return;
                         }
                     });
+                }
+
+                // if we use tailwind, init tailwind
+                if(answers.tailwind){
+                    initTailwind('classic');
                 }
             });
         });
