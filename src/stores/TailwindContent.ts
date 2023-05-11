@@ -17,3 +17,15 @@ export const indexCssTailwind: string =
     `@tailwind base;
 @tailwind components;
 @tailwind utilities;`;
+
+
+// file content for tailwind.config.js for base project
+export const tailwindBaseConfig: string =
+    `/** @type {import('tailwindcss').Config} */
+module.exports = {
+    content: ["./src/**/*.{html,js}"],
+    theme: {
+        extend: {},
+    },
+    plugins: [],
+}`;
