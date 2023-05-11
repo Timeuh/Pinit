@@ -1,8 +1,8 @@
 import {spawn} from "child_process";
 import chalk from "chalk";
-import {npmPath, npxPath} from "../stores/appConsts";
+import {npmPath, npxPath, projectParams} from "../stores/appConsts";
 import fs from "fs";
-import {indexCssTailwind, tailwindConfig} from "../stores/TailwindContent";
+import {indexCssTailwind, tailwindBaseConfig, tailwindConfig} from "../stores/TailwindContent";
 import path from "path";
 
 // init tailwind with vite js
@@ -10,6 +10,14 @@ export const initTailwind = (projectType: string) => {
     // init params for tailwind installation and initialization
     const installParams = ['install', '-D', 'tailwindcss'];
     const initParams = ['tailwindcss', 'init'];
+    let confTemplate = tailwindConfig;
+
+    // if the project type is classic
+    if (projectType === 'classic'){
+        // use alternative template
+        confTemplate = tailwindBaseConfig;
+        process.chdir('../');
+    }
 
     // if the project type is vite js
     if (projectType === 'vite'){
@@ -36,13 +44,13 @@ export const initTailwind = (projectType: string) => {
             // clear tailwind.config.js
             fs.truncate('tailwind.config.js', 0, () => {
                 // write our config in tailwind.config.js
-                fs.writeFile('tailwind.config.js', tailwindConfig, () => {
+                fs.writeFile('tailwind.config.js', confTemplate, () => {
                     // check if style.css exists
                     fs.access('style.css', fs.constants.F_OK, (err) => {
                         let cssFile = 'style.css';
 
                         // if style.css doesn't exist
-                        if (err) {
+                        if (err){
                             // change directory to src
                             const srcDir = path.resolve(process.cwd(), 'src');
                             process.chdir(srcDir);
@@ -50,11 +58,22 @@ export const initTailwind = (projectType: string) => {
                             cssFile = 'index.css';
                         }
 
-                        // clear css file
-                        fs.truncate(cssFile, 0, () => {
-                            // write tailwind config in css file
-                            fs.writeFile(cssFile, indexCssTailwind, () => {});
-                        });
+                        // if the project type is classic
+                        if (projectType === 'classic'){
+                            // create index.css
+                            fs.writeFile('index.css', indexCssTailwind, (err) => {
+                                if (err) {
+                                    console.log(chalk.red('Error while creating index.css file !'));
+                                    return;
+                                }
+                            });
+                        } else {
+                            // clear css file
+                            fs.truncate(cssFile, 0, () => {
+                                // write tailwind config in css file
+                                fs.writeFile(cssFile, indexCssTailwind, () => {});
+                            });
+                        }
                     });
                 });
             });
